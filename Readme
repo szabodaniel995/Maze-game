@@ -1,5 +1,4 @@
 Deployed with Vercel:
-https://mazegame-one.vercel.app
+https://maze-game-henna.vercel.app/
 
-Currently working on PC.
-Use "WASD" keys to control the ball, touch the green rectangle with the ball to win the game.
+Works on both mobile and desktop.
