@@ -1,0 +1,170 @@
+#turn {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100vw;
+  background: center/75% no-repeat url(https://browserstack.wpenginepowered.com/wp-content/uploads/2022/09/Landscape-and-Portrait-Mode.jpg);
+}
+
+@media only screen and (orientation: portrait) {
+  #game {
+    display: none;
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  #game {
+    display: block;
+  }
+  #turn {
+    display: none;
+    min-height: 0%;
+  }
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.info {
+  width: 100vw;
+  height: 100%;
+  min-height: 100%;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info h1 {
+  color: white;
+  font-size: 32px;
+}
+
+.info p {
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+
+.info button {
+  border: 2px solid white;
+  padding: 10px 40px;
+}
+
+.win {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.win h1 {
+  color: white;
+  font-size: 32px;
+}
+
+button {
+  font-size: 16px;
+  color: white;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.levelCont {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  padding: none;
+  margin: none;
+}
+
+.level {
+  color: white;
+  font-size: 16px;
+}
+
+.complete {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.complete h1 {
+  color: white;
+  font-size: 32px;
+}
+
+.devinfo {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.devinfo p {
+  color: white;
+  font-size: 16px;
+}
+
+a {
+  color: white;
+}
+
+.is-hidden {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .info h1 {
+    font-size: 64px;
+  }
+
+  .info p {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .win h1 {
+    font-size: 64px;
+  }
+
+  button {
+    font-size: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0 10px;
+  }
+
+  .level {
+    font-size: 32px;
+  }
+
+  .complete h1 {
+    font-size: 64px;
+  }
+
+  .devinfo p {
+    font-size: 32px;
+  }
+}
