@@ -44,36 +44,37 @@ async function createMaze({ firstTime, cellsHorizontal = 4, cellsVertical = 2, l
 	//
 
 	// Displaying the welcome panel
-	if (firstTime) {
-		const welcomeMessage = document.querySelector(".info");
-		const startButton = document.querySelector("#start");
-		const infoButton = document.querySelector("#dev");
-		const infoContent = document.querySelector(".devinfo");
-		const infoCloseButton = document.querySelector("#devclose");
+		if (firstTime) {
+			const welcomeMessage = document.querySelector(".info");
+			const startButton = document.querySelector("#start");
+			const infoButton = document.querySelector("#dev");
+			const infoContent = document.querySelector(".devinfo");
+			const infoCloseButton = document.querySelector("#devclose");
 
-		welcomeMessage.classList.remove("is-hidden");
+			welcomeMessage.classList.remove("is-hidden");
 
-		startButton.addEventListener(
-			"click",
-			() => {
-				welcomeMessage.classList.add("is-hidden");
-				generateMaze().then(devListener.abort()).then(closeListener.abort());
-			},
-			{ once: true }
-		);
+			startButton.addEventListener(
+				"click",
+				() => {
+					welcomeMessage.classList.add("is-hidden");
+					generateMaze().then(devListener.abort()).then(closeListener.abort());
+				},
+				{ once: true }
+			);
 
-		const devListener = new AbortController();
+			const devListener = new AbortController();
 
-		infoButton.addEventListener("click", () => {
-			infoContent.classList.remove("is-hidden");
-		}, { signal: devListener.signal });
+			infoButton.addEventListener("click", () => {
+				infoContent.classList.remove("is-hidden");
+			}, { signal: devListener.signal });
 
-		const closeListener = new AbortController();
+			const closeListener = new AbortController();
 
-		infoCloseButton.addEventListener("click", () => {
-			infoContent.classList.add("is-hidden");
-		}, { signal: closeListener.signal });
-	} else generateMaze();
+			infoCloseButton.addEventListener("click", () => {
+				infoContent.classList.add("is-hidden");
+			}, { signal: closeListener.signal });
+		} else generateMaze();
+	// 
 
 	// Maze generation
 		async function generateMaze() {
@@ -218,10 +219,11 @@ async function createMaze({ firstTime, cellsHorizontal = 4, cellsVertical = 2, l
 		// Adding controls
 
 			// Gyro control for mobile devices
+				const speed = 0.02;
+	
 				if (typeof window !== "undefined") {
 					const updateGravity = function (event) {
 						const orientation = typeof window.orientation !== "undefined" ? window.orientation : 0;
-						const speed = 0.02;
 
 						if (orientation === 0) {
 							Body.applyForce(ball, { x: ball.position.x, y: ball.position.y }, { 
@@ -253,16 +255,16 @@ async function createMaze({ firstTime, cellsHorizontal = 4, cellsVertical = 2, l
 			// Keyboard controls for desktops
 				const keyHandlers = {
 					KeyW: () => {
-						Body.applyForce(ball, { x: ball.position.x, y: ball.position.y }, { x: 0, y: -0.02 });
+						Body.applyForce(ball, { x: ball.position.x, y: ball.position.y }, { x: 0, y: -speed });
 					},
 					KeyA: () => {
-						Body.applyForce(ball, { x: ball.position.x, y: ball.position.y }, { x: -0.02, y: 0 });
+						Body.applyForce(ball, { x: ball.position.x, y: ball.position.y }, { x: -speed, y: 0 });
 					},
 					KeyS: () => {
-						Body.applyForce(ball, { x: ball.position.x, y: ball.position.y }, { x: 0, y: 0.02 });
+						Body.applyForce(ball, { x: ball.position.x, y: ball.position.y }, { x: 0, y: speed });
 					},
 					KeyD: () => {
-						Body.applyForce(ball, { x: ball.position.x, y: ball.position.y }, { x: 0.02, y: 0 });
+						Body.applyForce(ball, { x: ball.position.x, y: ball.position.y }, { x: speed, y: 0 });
 					},
 				};
 
@@ -336,8 +338,6 @@ async function createMaze({ firstTime, cellsHorizontal = 4, cellsVertical = 2, l
 			createMaze({ cellsHorizontal, cellsVertical, level });
 		}
 
-		restartLevel.addEventListener("click", restartLevelFunction);
-
 		function nextLevelFunction(event) {
 			event.preventDefault();
 			levelChange();
@@ -348,6 +348,7 @@ async function createMaze({ firstTime, cellsHorizontal = 4, cellsVertical = 2, l
 			createMaze({ cellsHorizontal: cellsHorizontal + 2, cellsVertical: cellsVertical + 1, level });
 		}
 
+		restartLevel.addEventListener("click", restartLevelFunction);
 		nextLevel.addEventListener("click", nextLevelFunction);
 	//
 }
